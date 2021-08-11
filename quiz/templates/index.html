@@ -1,0 +1,168 @@
+<!--<html>
+<head>
+<script>
+
+    function alert_trigger()
+    {
+        if ( {{alert_trigger}} == 1)
+        {
+            alert('Wrong Credentials');
+        }
+    }
+
+    function fetch_date()
+    {
+       var today = new Date();
+       var h = today.getHours();
+       var m = today.getMinutes();
+       var s = today.getSeconds();
+    
+       document.getElementById('starthour').value = h;
+       document.getElementById('startminute').value = m;
+       document.getElementById('startsecond').value = s;
+       document.getElementById('trigger').click()
+    }
+</script>
+<style>
+.a{
+    margin-top: -8px;
+    margin-left: -5px;
+    margin-right: -14px;
+    color: lightcyan;
+    background-color:chocolate ;
+    height: 86%;
+    width: 100%;
+    font-size: x-large;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-image: url('https://webengage.com/blog/wp-content/uploads/sites/4/2018/04/How-to-Use-an-Interactive-Quiz-to-Boost-Your-Online-Conversions.png')
+}
+.b{
+    margin-left: -5px;
+    margin-right: -6px;
+    margin-top: -20px;
+    height: 10%;
+    width: 100%;
+    background-color: gray;
+    color:bisque;
+    font-size: x-large;
+    animation: animate 3s 1;
+
+}
+@keyframes animate{
+    0%{
+        color: black;
+        margin-bottom: -40px;
+
+    }
+    50%{
+        letter-spacing: 25px;
+         margin-bottom: -40px;
+
+    }
+}
+button
+{
+  position: absolute;
+  left:45%;
+  height: fit-content;
+  float: left;
+  border: 2px solid black;
+  outline: black;
+  height: 28px;
+  font-size: 12px;
+  background: silver;
+  cursor: pointer;
+  border-radius: 20px;
+}
+button:hover
+{
+  background: lightskyblue;
+}
+
+
+
+</style>
+</head>
+<body onload = 'alert_trigger()'>
+    <div class="a">
+    <marquee >THERE IS THE LINK IN THE BOTTOM FOR UR QUIZ</marquee>
+     
+</div>
+<div class="b">
+   <p>ALL THE BEST FOR THE QUIZ GUYS.........</p>
+
+</div>
+    <form action = "{% url 'quiz:home' %}" method = 'post'>
+    {% csrf_token %}
+        <input type = 'text' placeholder = 'username' name = 'student_name'>
+        <input type = 'password' placeholder = 'password' name = 'password'>
+        <input type = 'submit' id = 'trigger'>
+    </form>
+ 
+    <font size="5" color="black">Log In...</font></button>
+</body>
+</html>
+-->
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+  <head>
+  <script>
+
+    function alert_trigger()
+    {
+        if ( {{alert_trigger}} == 1)
+        {
+            alert('Wrong Credentials');
+        }
+    }
+   </script>
+    <meta charset="utf-8">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static '/css/login.css' %}">
+    <style>
+        body{
+            background-image: url({% static '/img/bg1.png' %});
+            background-repeat: no-repeat;
+            background-attachment: fixed;  
+            background-size: cover;
+            background-color: aqua;
+        }
+    </style>
+  </head>
+  <body onload = 'alert_trigger()'>
+    <div class="col-sm">
+	    <a class="btn btn-primary" href = "{% url 'quiz:firstpage' %}">Back</a>
+    </div>
+    <div class="wrapper">    
+
+        <div class="title">Quiz++</div> 
+
+        <div class="field">
+            <form action = "{% url 'quiz:home' %}" method = 'post'>
+            {% csrf_token %}
+                <input type = 'text' class="form-control" placeholder = 'username' name = 'student_name'>
+                <br>
+                <input type = 'password' class="form-control" placeholder = 'password' name = 'password'>
+
+                <div class="checkbox">
+                <input type="checkbox" class="form-check-input" id="remember-me">
+                <label for="remember-me">Remember me</label>
+                </div>
+
+                <div class="field">
+                    <input type="submit" value="Login" id='trigger' class="btn btn-primary" onclick = "document.getElementById('trigger').click()">
+                </div>
+            </form>  
+        </div>
+    </div>
+
+          
+
+
+
+</body>
+</html>

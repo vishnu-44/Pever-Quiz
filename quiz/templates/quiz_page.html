@@ -1,0 +1,577 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/css2?family=East+Sea+Dokdo&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css" integrity="sha384-DhY6onE6f3zzKbjUPRc2hOzGAdEf4/Dz+WJwBvEYL/lkkIsI3ihufq9hk9K4lVoK" crossorigin="anonymous">
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+			user-select: none;
+		}
+
+		body{
+			height: 100%;
+			width: 100%;
+			background-image: url({% static '/img/bg1.png' %});
+            background-repeat: no-repeat;
+            background-attachment: fixed;  
+            background-size: cover;
+            background-color: aqua;
+
+		}
+
+		
+		body::-webkit-scrollbar {
+			width: 7px;
+			background-color: #523e57fd; 
+		}
+
+		body::-webkit-scrollbar-thumb {
+			border-radius: 10px;
+			-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+			background-color: #7742f4;
+		}
+
+
+		h1{
+            color:#fff;
+            text-align: center;
+            text-decoration: underline;
+            font-style: italic;
+            font-size: 5rem;
+            font-family: cursive;
+            font-weight: bolder;
+        }
+
+		ol li{
+			list-style: none;
+		}
+
+		input[type='radio']{
+			display: inline;
+		}
+
+		text{
+			color: #fff;
+			font-size: 1.5rem;
+			font-family: sans-serif;
+			width: 70%;
+		}
+
+		#start{
+			width: 100vw;
+			height: 100vh;
+		}
+
+		#start button{
+			position: absolute;
+			transform: translate(-50%, -50%);
+			top: 50%;
+			left: 50%;
+			width: 200px;
+			height: 40px;
+			background-color:rgba(255,255,255, 0.5);
+			color: #fff;
+		}
+
+		#start button:hover{
+			background-color: rgba(0,0,0,0);
+			font-weight: bold;
+			border: 3px solid #333;
+			font-size: 1.25rem;
+			transition: 0.3s ease-out all;
+		}
+
+		.header{
+			height: 30vh;
+		}
+
+		.heading{
+			font-family: 'East Sea Dokdo', cursive;
+		}
+
+		.quiz_section{
+			height: 70vh;
+		}
+
+		.question{
+			background-color: #fff;
+			margin: 20px 0;
+			padding: 20px;
+		}
+
+		.question,
+		.question_no{
+			margin: 40px 0 20px 20px;
+			color: #333;
+			font-size: 1.5rem;
+			font-family: sans-serif;
+		}
+
+		.question_view{
+			height: 60%;
+			color: #ffffff;
+		}
+
+		.choice_li{
+			margin: 10px;
+			list-style: none;
+		}
+
+		.choice_li:hover{
+			position: relative;
+			top: -1;
+		}
+		
+		.nav_section{
+			height: 40%;
+		}
+
+		.quick_nav{
+			
+			height: auto;
+			background-color: rgba(51, 51, 51, 0.2);
+		}
+
+		.quick_nav_heading{
+			font-size: 1.5rem;
+			border-bottom: 2px solid rgb(197, 197, 197);
+			color: #fff;
+		}
+
+		.fheight{
+			height: 30px;
+		}
+
+		.fheight:hover{
+			height: 20px;
+		}
+
+		.question_link{
+			margin: 10px;
+			background-color: #fff;
+			height: 40px;
+		}
+
+		.question_link:hover{
+			position: relative;
+			top:-1;
+			border: 1px solid #333;
+			transition: 0.6s ease-in all;
+		}
+
+		.question_link p{
+			font-style: 1.5rem;
+			text-align: center;
+			color: red;
+		}
+
+		.previous,
+		.next{
+			margin: 20px 10px 10px 10px;
+			height: 30px;
+			text-align: center;
+			color: #333;
+			background-color: aquamarine;
+		}
+
+		.previous:hover,
+		.next:hover{
+			border: 1px solid #333;
+			background-color: rgba(0,0,0,0);
+			transition: 0.3s ease all;
+		}
+
+
+		#submission{
+			display: block;
+			width: 70%;
+			height: 40px;
+			margin: 20px auto;
+		}
+
+		#submission:hover{
+			background-color: rgba(0,0,0,0);
+			color: #fff;
+			transition: 0.3s ease-in all;
+		}
+
+		#check_result{
+			display: block;
+			width: 100vw;
+			height: 200px;
+		}
+		#chckres{
+			display: none;
+		}
+        input[type=checkbox] {
+            display: none;
+            margin: 10px;
+        }
+
+            input[type=checkbox] + label {
+                display: inline-block;
+                margin: -2px;
+                padding: 4px 12px;
+                background-color: white;
+                border-color: #ddd;
+                width: 100%;
+            }
+
+
+            input[type=checkbox]:checked + label {
+                color: white;
+                background-color: #1c094c;
+                width: 100%;
+            }
+
+        #calcbtn {
+            padding: 0.5%;
+            background-color: lightblue;
+            color: black;
+            border: solid black 2px;
+            width: 100%;
+            position: center;
+            border-radius: 8px;
+        }
+
+        input[type="text"] {
+            background-color: white;
+            border: solid black 2px;
+            width: 100%
+        }
+
+	</style>
+	<script>
+        document.onkeydown = function (evt) {
+            if (evt.keyCode == 27 || evt.keyCode == 122 || evt.keyCode == 17 || evt.keyCode == 18) {
+                evt.preventDefault();
+                document.getElementById("submission").click();
+            }
+        }
+
+		function toggleFullScreen() {
+
+			var doc = window.document
+			var docEl = doc.documentElement
+
+			var requestFullScreen = docEl.requestFullscreen || docEl.mozRequestFullScreen || docEl.webkitRequestFullScreen || docEl.msRequestFullscreen
+			var cancelFullScreen = doc.exitFullscreen || doc.mozCancelFullScreen || doc.webkitExitFullscreen || doc.msExitFullscreen
+
+			if (!doc.fullscreenElement && !doc.mozFullScreenElement && !doc.webkitFullscreenElement && !doc.msFullscreenElement) {
+				requestFullScreen.call(docEl)
+			}
+		}
+
+		function unhide() {
+			document.querySelector("#hide_unhide").style.display = "block"
+			document.querySelector("#start").style.display = "none"
+			display_question()
+		}
+
+		function startTime() {
+			var today = new Date()
+			var h = today.getHours()
+			var m = today.getMinutes()
+			var s = today.getSeconds()
+
+			time = h*60*60 + m*60 + s - parseInt({{second}}) - (parseInt({{minute}}))*60 - (parseInt({{hour}}))*60*60
+			if (time > 20){
+				clearInterval(t)
+				document.querySelector("#hide_unhide").style.display = "none"
+				document.querySelector("#chckres").style.display = "block"
+			}
+			
+			document.getElementById('remTime').innerHTML = time
+			t = setInterval(startTime, 1000)
+		}
+		
+		// Load question in begining
+		function display_question(){
+			questions = document.querySelectorAll('.question')
+			pre_ques = document.querySelector('.previous')
+
+			// hide all question from question no. 2
+			for (i=1; i<questions.length; i++){
+				questions[i].style.display = 'none'
+			}
+			// disable previous button  for question 1 
+			pre_ques.style.opacity = '0.1'
+
+			// to identify current selected question in quick nav
+			document.querySelector('#ql1').style.backgroundColor = '#fc3'
+		}
+
+		// change to question with quick navigation
+		function changeQuestion(e){
+			pt = document.getElementById(e).querySelector('p').innerHTML
+			questions = document.querySelectorAll('.question')
+			question_link = document.querySelectorAll('.question_link')
+			nex_ques = document.querySelector('.next')
+			pre_ques = document.querySelector('.previous')
+
+			// hide all the questions and change background color of quick_nav to default
+			for(i=0;i<questions.length; i++){
+				questions[i].style.display = 'none'
+				question_link[i].style.backgroundColor = '#fff'
+
+			}
+			// display the selected question
+			document.getElementById('q'+ pt).style.display = 'block'
+
+			// to identify current selected question in quick nav
+			document.getElementById('ql'+ pt).style.backgroundColor = '#fc3'
+
+			// disable next button (only for last question)
+			if(parseInt(pt) == questions.length){
+				pre_ques.style.opacity = '1'
+				nex_ques.style.opacity = '0.1'
+			}
+			// disable previous button (only for first question)
+			else if (parseInt(pt) == 1){
+				pre_ques.style.opacity = '0.1'
+				nex_ques.style.opacity = '1'
+			}
+			// to make previous and next button able (for all questions except first and last)
+			else {
+				pre_ques.style.opacity = '1'
+				nex_ques.style.opacity = '1'
+			}
+		}
+
+		// to goto to previous question
+		function changeToPrevious(){
+			questions = document.querySelectorAll('.question')
+			question_link = document.querySelectorAll('.question_link')
+			pre_ques = document.querySelector('.previous')
+			nex_ques = document.querySelector('.next')
+
+			// selecting the current displayed question
+			for(i=0;i<questions.length; i++) {
+				if (questions[i].style.display != 'none') 
+					break
+			}
+
+			document.getElementById('ql'+ (i+1)).style.backgroundColor = '#fff'
+
+			// change to previous question if question no. is greater than 1
+			if (i > 1){
+				pre_ques.style.opacity = '1'
+				questions[i].style.display = 'none'
+				questions[i-1].style.display = 'block'	
+				// to identify current selected question in quick nav
+				document.getElementById('ql'+ (i)).style.backgroundColor = '#fc3'		
+			} 
+
+			// (for question no 1 only) go to first question and disable previous button 
+			else if (i == 1){
+				pre_ques.style.opacity = '0.1'
+				questions[i].style.display = 'none'
+				questions[i-1].style.display = 'block'
+				// to identify current selected question in quick nav
+				document.getElementById('ql'+ (i)).style.backgroundColor = '#fc3'
+			}
+
+			// to enable next button if the select question is not last question
+			if (i < questions.length){
+				nex_ques.style.opacity = '1'
+			}
+		}
+
+		// to goto next question
+		function changeToNext(){
+			questions = document.querySelectorAll('.question')
+			question_link = document.querySelectorAll('.question_link')
+			nex_ques = document.querySelector('.next')
+			pre_ques = document.querySelector('.previous')
+
+			// hide all the questions
+			for (i=0;i<questions.length; i++) {
+				if (questions[i].style.display != 'none') 
+					break
+				
+			}
+
+			document.getElementById('ql'+ (i+1)).style.backgroundColor = '#fff'
+
+			// unhide the next question
+			//valid upto second last question
+			if (i < questions.length-2) {
+				nex_ques.style.opacity = '1'
+				questions[i].style.display = 'none'
+				questions[i+1].style.display = 'block'
+				// to identify current selected question in quick nav
+				document.getElementById('ql'+ (i+2)).style.backgroundColor = '#fc3'
+			} 
+
+			// for last question and disable next button
+			else if (i == questions.length-2) {
+				nex_ques.style.opacity = '0.1'
+				questions[i].style.display = 'none'
+				questions[i+1].style.display = 'block'
+				// to identify current selected question in quick nav
+				document.getElementById('ql'+ (i+2)).style.backgroundColor = '#fc3'
+			}
+
+			// if previous button is not first button then enable previous button
+			if (i+1 > 0) {
+				pre_ques.style.opacity = '1'
+			}
+		}
+		function startTime() 
+		{
+			var today = new Date();
+			var h = today.getHours();
+			var m = today.getMinutes();
+			var s = today.getSeconds();
+			time = h*60*60 + m*60 + s - parseInt({{second}}) - (parseInt({{minute}}))*60 - (parseInt({{hour}}))*60*60;
+			if (time >= parseInt({{time_limit}})){
+				document.getElementById("submission").click()
+			}
+			document.getElementById('remTime').innerHTML = time
+			var t = setTimeout(startTime, 500);
+		}
+
+        function dis(val) {
+            document.getElementById("result").value += val
+        }
+
+        //function that evaluates the digit and return result
+        function solve() {
+            let x = document.getElementById("result").value
+            let y = eval(x)
+            document.getElementById("result").value = y
+        }
+
+        //function that clear the display
+        function clr() {
+            document.getElementById("result").value = ""
+        }
+
+
+        function ShowCalc() {
+            document.getElementById("showcalc").style.display = "none";
+            document.getElementById("calculator").style.display = "block";
+        }
+
+	</script>
+</head>
+<body onmousemove="toggleFullScreen()" onmouseover="toggleFullScreen()" onmousedown="toggleFullScreen()" onmouseout="toggleFullScreen()" onmouseup="toggleFullScreen">
+	<div id="start">
+		<button name="next" value="Start Quiz" onclick="toggleFullScreen();  unhide(); startTime();"> Click To Start </button>
+	</div>
+	
+	<div id="hide_unhide" class='container' style="display:none">
+
+	<div class="row header">
+        <div class="col-sm">
+            <h1 id='heading'>PEWER QUIZ</h1>
+        </div>
+	</div>
+
+	<div class='row quiz_section'>
+        <div class="col-8">
+
+			<form action= "{% url 'quiz:result'%}" method='post' enctype="multipart/form-data">
+				{% csrf_token %}
+				<div class='row question_view'>
+					<div class="col">
+						<ol>
+							{% for q in QSet %}
+							{% with forloop.counter as outer_counter %}
+							<div class='question' id='q{{forloop.counter}}'>
+                                
+								<li> <span class='question_no'>{{outer_counter}}.</span> {{q.question_text}}</li>
+								<img src="{{ q.image.url|default_if_none:'#' }}" width="100%">
+								<ul>
+									{% for ch in q.choice_set.all %}
+									<li class='choice_li'>
+										<input type='checkbox' name='{{q.question_text}}{{ch.choice_text}}' id='q{{outer_counter}}c{{forloop.counter}}' value='{{ch.choice_text}}'> 
+										<label for="q{{outer_counter}}c{{forloop.counter}}"> {{ch.choice_text}} </label> 
+									</li>
+									{% endfor %}
+								</ul>
+							</div>
+							{% endwith %}
+							{% endfor %}
+						</ol>
+					</div>
+				</div>
+
+				<!-- Live Chat -->
+				<div class='row live_chat'></div>	
+			</div>
+
+			<!-- Quick Navigations -->
+			<div class="col nav_section quiz-nav-col">
+				<div class='row quick_nav'>
+					<div class='quick_nav_heading'> Quiz navigation </div>
+					<div class="d-flex flex-row bd-highlight mb-3 fhieght">
+						{% for q in QSet %}
+							<div class="p-2 bd-highlight question_link" id='ql{{forloop.counter}}' onclick='changeQuestion(this.id)'><p>{{forloop.counter}}</p></div>
+						{% endfor %}
+					</div>
+				</div>
+
+				<div class="row space-adder"></div>
+
+				<div class='row submit_quiz'>
+					<div class='col previous' onclick='changeToPrevious()'>Previous</div>
+					<div class='col next' onclick='changeToNext()'>Next</div>
+					<input type='submit' id='submission' value='FinishAttempt'>
+					<br>
+					<div id="calculator" style="display:none">
+						<table border="1">
+							<tr>
+								<td colspan="3"><input type="text" id="result" /></td>
+								<!-- clr() function will call clr to clear all value -->
+								<td><input type="button" value="c" onclick="clr()" id="calcbtn" style="width:70px" /> </td>
+							</tr>
+							<tr>
+								<!-- create button and assign value to each button -->
+								<!-- dis("1") will call function dis to display value -->
+								<td><input type="button" value="1" onclick="dis('1')" id="calcbtn" /> </td>
+								<td><input type="button" value="2" onclick="dis('2')" id="calcbtn" /> </td>
+								<td><input type="button" value="3" onclick="dis('3')" id="calcbtn" /> </td>
+								<td><input type="button" value="/" onclick="dis('/')" id="calcbtn" /> </td>
+							</tr>
+							<tr>
+								<td><input type="button" value="4" onclick="dis('4')" id="calcbtn" /> </td>
+								<td><input type="button" value="5" onclick="dis('5')" id="calcbtn" /> </td>
+								<td><input type="button" value="6" onclick="dis('6')" id="calcbtn" /> </td>
+								<td><input type="button" value="-" onclick="dis('-')" id="calcbtn" /> </td>
+							</tr>
+							<tr>
+								<td><input type="button" value="7" onclick="dis('7')" id="calcbtn" /> </td>
+								<td><input type="button" value="8" onclick="dis('8')" id="calcbtn" /> </td>
+								<td><input type="button" value="9" onclick="dis('9')" id="calcbtn" /> </td>
+								<td><input type="button" value="+" onclick="dis('+')" id="calcbtn" /> </td>
+							</tr>
+							<tr>
+								<td><input type="button" value="." onclick="dis('.')" id="calcbtn" /> </td>
+								<td><input type="button" value="0" onclick="dis('0')" id="calcbtn" /> </td>
+								<!-- solve function call function solve to evaluate value -->
+								<td><input type="button" value="=" onclick="solve()" id="calcbtn" /> </td>
+								<td><input type="button" value="*" onclick="dis('*')" id="calcbtn" /> </td>
+							</tr>
+						</table>
+
+					</div>
+					<div id="showcalc">
+						<input type="button" id="unhidecalc" value="Need Calculator?" onclick="ShowCalc()" />
+					</div>
+					<text> Time: <span id="remTime"></span> </text>
+				</div>
+				
+			</div>
+			</form>
+		</div>
+	</div>	
+
+
+</body>

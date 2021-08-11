@@ -1,0 +1,208 @@
+{% load static %}
+
+<head>
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static '/favicon/apple-touch-icon.png' %}">
+	<link rel="icon" type="image/png" sizes="32x32" href="{% static '/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static '/favicon/favicon-16x16.png' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script>
+
+        function Abstraction()
+        {
+            if( {{permission_level}} == 2)
+            {
+                document.getElementById('admin_link').style.display = 'block';
+            }
+        }
+        
+        function fetch_date()
+        {
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+    
+            document.getElementById('starthour').value = h;
+            document.getElementById('startminute').value = m;
+            document.getElementById('startsecond').value = s;
+            document.getElementById('trigger').click()
+        }
+
+    </script>
+
+    <style>
+        body{
+            background-image: url({% static '/img/bg1.png' %});
+            background-repeat: no-repeat;
+            background-attachment: fixed;  
+            background-size: cover;
+            background-color: aqua;
+        }
+
+        
+		body::-webkit-scrollbar {
+			width: 7px;
+			background-color: #523e57fd; 
+		}
+
+		body::-webkit-scrollbar-thumb {
+			border-radius: 10px;
+			-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+			background-color: #7742f4;
+		}
+
+
+        form{
+            background-color: rgba(0,0,0,0);
+        }
+
+        input[type='text']{
+            background-color: rgb(241, 241, 202);
+        }
+
+        .card{
+            margin: 10px;
+            color: #333;
+            border-color: #333;
+        }
+
+        .message{
+            width: 400px;
+            background: rgba(0,0,0,0);
+        }
+
+       .sended-message-body{
+            box-shadow: 0px 14px 16px 0px rgb(56, 5, 80);
+        }
+
+
+        #message-text,
+        #message-send{
+            margin: 20px 20px 0 20px;
+            width: 90%;
+        }
+
+        .sender{
+            width: 40%;
+        }
+         
+        
+        .card{
+            background-color: #fff;
+            background: linear-gradient(326deg, #a4508b 0%, rgb(95, 10, 135) 74%);
+            color: #fff;
+            border: 3px;
+        }
+
+        .start-quiz{
+            position: relative;
+        }
+
+        .start-quiz button{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            width: 40%;
+        }
+
+        .whole{
+            box-shadow: 0px 14px 16px 0px rgb(56, 5, 80);
+            background: rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body onload = 'Abstraction()'>
+    
+    <div class="col-sm">
+		<a class="btn btn-primary" style="background-color: #6050dc;" href = "{% url 'quiz:firstpage' %}">Logout</a>
+	</div>
+    <div class="container">
+        <a href = "{% url 'admin:index' %}" style = 'display : none' id = 'admin_link'>ClicktogetAdmin</a>
+
+        <form action = "{% url 'quiz:quiz_page' %}" method = 'post' style = 'display : none' class="form-inline">
+        {% csrf_token %}
+            <input type = 'text' id = "starthour" name = 'starthour'>
+            <input type = 'text' id = 'startminute' name = 'startminute'>
+            <input type = 'text' id = 'startsecond' name = 'startsecond'>
+            <input type = 'submit' id = 'trigger'>
+        </form>
+<!--
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Disabled</a>
+                    </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+
+  -->      
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="message">
+                    <div class="card whole">
+                       <!-- <div class="card"> -->
+                            {% for chat in chatbox %}
+                                <div class="card sended-message-body">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-sm-4 sender">
+                                                <p class="card-text"> {{chat.chatter_name}} </p>
+                                            </div>
+                    
+                                            <div class="col-sm-7">
+                                                <p class="card-text"> <span> : </span> {{chat.chat_text}} </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            {% endfor %}
+                        <!-- </div> -->
+
+                        <form action = "{% url 'quiz:home' %}" method = 'post'>
+                        {% csrf_token %}
+                            <input type = 'text' class="form-control" id="message-text" placeholder = 'type here....' name = 'chat_box'>
+                            <button type = 'submit' id="message-send" class="btn btn-primary" > Send </button>
+                        </form>
+                    </div>
+                </div>
+        
+            </div>
+
+            <div class="col-sm start-quiz">
+                <button onclick='fetch_date()' class="btn btn-primary">Go to quiz</button>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

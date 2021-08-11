@@ -1,0 +1,212 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="apple-touch-icon" sizes="180x180" href="{% static '/favicon/apple-touch-icon.png' %}">
+	<link rel="icon" type="image/png" sizes="32x32" href="{% static '/favicon/favicon-32x32.png' %}">
+	<link rel="icon" type="image/png" sizes="16x16" href="{% static '/favicon/favicon-16x16.png' %}">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="manifest" href="/manifest.json">
+  <title>Quiz++</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static '/css/index/loader.css' %}">
+</head>
+<div class="sticky">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+	<a class="navbar-brand">
+       <img src="{% static '/favicon/logo11.png' %}" height="30" alt="Quiz++">
+      <a class="navbar-brand" href="#">Quiz++</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#" onclick="topFunction()">Home</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#footer">Contact Us</a></li>
+    </ul>
+    <button class="btn btn-danger navbar-btn"><a href="{% url 'quiz:index'  %}" style="text-decoration: none;color:white;" >Login Now</a></button>
+  </div>
+</nav>
+</div>
+
+<body>
+<link rel="stylesheet" type="text/css" href="{% static '/css/index/bg.css' %}">
+<div class="parallax">
+</div>
+
+<body id="typer">
+<div class="container">
+<link rel="stylesheet" type="text/css"  href="{% static '/css/index/typer.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Raleway:200,100,400" rel="stylesheet" type="text/css" />
+<h1><br><br><br><br><br><br><br>
+  <span
+     class="txt-rotate"
+     data-period="2000"
+     data-rotate='[ "Welcome to Quiz++","Ready to test your skills?" ]'></span>
+</h1>
+<h2><br><br><br><br><br><br><br><br><br><br><br>&nbsp&nbsp&nbsp&nbsp&nbsp Let's get started!</h2>
+</body>
+
+<style>
+div.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+</style>
+
+<script>
+   function fn()
+    {
+       var today = new Date();
+       var h = today.getHours();
+       var m = today.getMinutes();
+       var s = today.getSeconds();
+    
+       document.getElementById('starthour').value = h;
+       document.getElementById('startminute').value = m;
+       document.getElementById('startsecond').value = s;
+       document.getElementById('trigger').click()
+    }
+</script>
+</head>
+</div>
+<div>
+
+<!-- Slideshow container -->
+<div class="slideshow-container">
+<link rel="stylesheet" href="{% static '/css/index/slideshow.css' %}">
+  <!-- Full-width slides/quotes -->
+  <div class="mySlides">
+    <q class="slide">The cure for boredom is curiosity. There is no cure for curiosity </q>
+    <p class="author">– Dorothy Parker</p>
+  </div>
+
+  <div class="mySlides">
+    <q class="slide">Teachers open the door, but you must enter by yourself </q>
+    <p class="author">– Chinese Proverb.</p>
+  </div>
+
+  <div class="mySlides">
+    <q class="slide">The beautiful thing about learning is that no one can take it away from you </q>
+    <p class="author">– B. B. King</p>
+  </div>
+<div class="mySlides">
+    <q class="slide">The function of education is to teach one to think intensively and to think critically. Intelligence plus character – that is the goal of true education </q>
+    <p class="author">– Martin Luther King </p>
+  </div>
+
+  <!-- Next/prev buttons -->
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+
+<!-- Dots/bullets/indicators -->
+<div class="dot-container">
+  <span class="dot" onclick="currentSlide(1)"></span>
+  <span class="dot" onclick="currentSlide(2)"></span>
+  <span class="dot" onclick="currentSlide(3)"></span>
+<span class="dot" onclick="currentSlide(4)"></span>
+</div>
+
+<div id="faq">
+<main class="card">
+  <div class="hero">
+    <img src="https://raw.githubusercontent.com/ArtemPonomarenko/FAQ-Accordion/main/images/illustration-woman-online-mobile.svg" alt="section image" class="img">
+  </div>
+
+  <h2 id="titlefaq">FAQ</h2>
+
+  <div class="acc-container">
+
+    <button class="acc-btn">Can I go through all questions in the quiz after the start?</button>
+    <div class="acc-content">
+      <p>
+        Yes,we have designed a navigation panel which lets you go through all questions at once.
+      </p>
+    </div>
+
+    <button class="acc-btn">
+      Can I save my results?
+    </button>
+    <div class="acc-content">
+      <p>
+        Yes, your account saves each quiz you attend.
+      </p>
+    </div>
+
+    <button class="acc-btn">
+      What extra features do you provide?
+    </button>
+    <div class="acc-content">
+      <p>
+        There's calculator,timer and result page review available for each quiz.
+      </p>
+    </div>
+
+    <button class="acc-btn">
+      What happens if I press ESC and exits full screen?
+    </button>
+    <div class="acc-content">
+      <p>
+        Your quiz will terminate and will be redirected to the result page.
+      </p>
+    </div>
+
+    <button class="acc-btn">
+      How difficult is it to add questions for teachers?
+    </button>
+    <div class="acc-content">
+      <p>
+        We provide you an admin panel which is very user-friendly and can add questions easily.
+      </p>
+    </div>
+
+    <button class="acc-btn">
+      How does Quiz++ prevent malpractices?
+    </button>
+    <div class="acc-content">
+      <p>
+        Timer for each question,Full screen on starting quiz which on exit terminates the quiz, disbled copying of questions,
+      </p>
+    </div>
+  </div>
+<link rel="stylesheet" href="{% static '/css/index/faq.css' %}">
+<script src="{% static '/js/index/faq.js' %}"></script>
+</main>
+</div>
+
+<div id="footer" class="jumbotron text-center" style="margin-bottom:0">
+<link rel="stylesheet" href="{% static '/css/index/footer.css' %}">
+            <footer class="footer">
+                <div class="footer-content center-relative">
+                    <div class="footer-mail">
+                        <a href="mailto:teampever@gmail.com" style="text-decoration: none;">teampever@gmail.com</a>
+                    </div>
+                    <div class="footer-number">
+                        <a href="tel:9400843858" style="text-decoration: none;">9400-84-38-58</a>
+                    </div>
+                    <div class="footer-info"> 
+			Kerala,India 
+                    </div>
+                    <div class="copyright-holder"> 
+			© 2020 Team Pever
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+<script src="{% static '/js/index/scroll.js' %}"></script>
+<script type="text/javascript" src="{% static '/js/index/typer.js' %}"></script>
+<script src="{% static '/js/index/slideshow.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script>
+$(window).on("load",function(){
+  $(".loader")
+  });
+</script>
+</html>

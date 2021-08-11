@@ -1,0 +1,13 @@
+
+.parallax {
+
+  background-image: url("https://1.bp.blogspot.com/-Hh-2cOcIPw0/X5c2O4ty4vI/AAAAAAAAC_I/6Bu_MuCkg8Ike20PHmLjLCXU3ga7BLe-wCLcBGAsYHQ/s16000/bg1.jpg");
+
+  height: 650px;
+
+
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}

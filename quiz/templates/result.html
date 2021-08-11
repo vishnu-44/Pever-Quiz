@@ -1,0 +1,118 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	theme: "dark2", // "light1", "light2", "dark1", "dark2"
+	title:{
+		text: "Marks"
+	},
+	axisY: {
+		title: "Marks"
+	},
+	data: [{        
+		type: "column",  
+		showInLegend: true, 
+		legendMarkerColor: "grey",
+		legendText: "",
+		dataPoints: [      
+			{ y: {{mark_dhanush}}, label: "Dhanush" },
+			{ y: {{mark_vishnu}},  label: "Vishnu" },
+			{ y: {{mark_nevin}},  label: "Nevin" },
+		]
+	}]
+});
+chart.render();
+
+}
+</script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<title>Document</title>
+	<style>
+		body{
+            background-image: url({% static '/img/bg1.png' %});
+            background-repeat: no-repeat;
+            background-attachment: fixed;  
+            background-size: cover;
+            background-color: aqua;
+        }
+
+		body::-webkit-scrollbar {
+			width: 7px;
+			background-color: #523e57fd; 
+		}
+
+		body::-webkit-scrollbar-thumb {
+			border-radius: 10px;
+			-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+			background-color: #7742f4;
+		}
+
+		li{
+			list-style: none;
+		}
+		h1{
+			color : #fff;
+		}
+	</style>
+	<title> Result</title>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-10">
+				<h1>Final Result is {{Final_Result}}/{{total}}</h1>
+			</div>
+
+			<div class="col-sm">
+				<a class="btn btn-primary" href = "{% url 'quiz:firstpage' %}">Logout</a>
+			</div>
+			<div class="col-sm">
+				<a class="btn btn-primary" href = "{% url 'quiz:home' %}">Back to Back to home</a>
+			</div>
+			
+		</div>
+
+		<br>
+		<br>
+
+		<div class="row">
+			<div class="col-sm">
+				<ol>
+					{% for q in QSet %}
+						<li>				
+							<div class="card">
+								<div class="card-body">
+									<h3 class="card-title"><span>{{forloop.counter}}. </span> {{q.question_text}}</h3>
+									<p class="card-text">Scored : {{q.temp_score}}</p>
+									<p class="card-text">Response : {{q.user_response}}</p>
+		
+									<nobr>Solution : </nobr>
+									{% for sol in q.answer_set.all %}
+										<nobr>{{sol.answer_text}}</nobr>
+									{% endfor %}
+								</div>
+							</div>
+						</li>
+						<br>
+					{% endfor %}
+				</ol>
+			</div>
+		</div>	
+
+		<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+		<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+	</div>
+		
+</body>
+</html>
+

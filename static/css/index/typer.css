@@ -1,0 +1,20 @@
+#typer {
+  font-family: 'Raleway', sans-serif;
+  padding: 1em 2em;
+  font-size: 10px;
+  color:white;
+}
+
+h1,h2 {
+   font-weight: 200;
+   margin: 0.4em 0;
+  position:absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+h1 { font-size: 3.5em; }
+h2 {
+  color: #888;
+  font-size: 3em;
+}
